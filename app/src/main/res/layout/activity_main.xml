@@ -18,6 +18,8 @@
             android:layout_column="0"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/canard">
 
         </ImageButton>
@@ -28,6 +30,8 @@
             android:layout_column="1"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/canard">
 
         </ImageButton>
@@ -38,6 +42,8 @@
             android:layout_column="2"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/canard">
 
         </ImageButton>
@@ -48,6 +54,8 @@
             android:layout_column="0"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/canard">
 
         </ImageButton>
@@ -58,6 +66,8 @@
             android:layout_column="1"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/canard">
 
         </ImageButton>
@@ -68,6 +78,8 @@
             android:layout_column="2"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/canard">
 
         </ImageButton>
@@ -78,6 +90,8 @@
             android:layout_column="0"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/canard">
 
         </ImageButton>
@@ -88,6 +102,8 @@
             android:layout_column="1"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/canard">
 
         </ImageButton>
@@ -98,6 +114,8 @@
             android:layout_column="2"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/canard">
 
         </ImageButton>
