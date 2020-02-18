@@ -12,95 +12,95 @@
         android:rowCount="3"
         android:columnCount="3">
 
-        <ImageView
-            android:id="@+id/IV1"
+        <ImageButton
+            android:id="@+id/IB1"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:src="@drawable/canard">
 
-        </ImageView>
+        </ImageButton>
 
-        <ImageView
-            android:id="@+id/IV2"
+        <ImageButton
+            android:id="@+id/IB2"
             android:layout_row="0"
             android:layout_column="1"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:src="@drawable/canard">
 
-        </ImageView>
+        </ImageButton>
 
-        <ImageView
-            android:id="@+id/IV3"
+        <ImageButton
+            android:id="@+id/IB3"
             android:layout_row="0"
             android:layout_column="2"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:src="@drawable/canard">
 
-        </ImageView>
+        </ImageButton>
 
-        <ImageView
-            android:id="@+id/IV4"
+        <ImageButton
+            android:id="@+id/IB4"
             android:layout_row="1"
             android:layout_column="0"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:src="@drawable/canard">
 
-        </ImageView>
+        </ImageButton>
 
-        <ImageView
-            android:id="@+id/IV5"
+        <ImageButton
+            android:id="@+id/IB5"
             android:layout_row="1"
             android:layout_column="1"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:src="@drawable/canard">
 
-        </ImageView>
+        </ImageButton>
 
-        <ImageView
-            android:id="@+id/IV6"
+        <ImageButton
+            android:id="@+id/IB"
             android:layout_row="1"
             android:layout_column="2"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:src="@drawable/canard">
 
-        </ImageView>
+        </ImageButton>
 
-        <ImageView
-            android:id="@+id/IV7"
+        <ImageButton
+            android:id="@+id/IB7"
             android:layout_row="2"
             android:layout_column="0"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:src="@drawable/canard">
 
-        </ImageView>
+        </ImageButton>
 
-        <ImageView
-            android:id="@+id/IV8"
+        <ImageButton
+            android:id="@+id/IB8"
             android:layout_row="2"
             android:layout_column="1"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:src="@drawable/canard">
 
-        </ImageView>
+        </ImageButton>
 
-        <ImageView
-            android:id="@+id/IV9"
+        <ImageButton
+            android:id="@+id/IB9"
             android:layout_row="2"
             android:layout_column="2"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:src="@drawable/canard">
 
-        </ImageView>
+        </ImageButton>
 
     </GridLayout>
 
