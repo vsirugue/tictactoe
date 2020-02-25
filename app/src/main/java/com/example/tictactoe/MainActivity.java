@@ -2,6 +2,10 @@ package com.example.tictactoe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ApplicationInfo;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,12 +47,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB1.setBackgroundResource(R.drawable.un2);
+                    Drawable img = resize(getDrawable(R.drawable.un2),2);
+                    IB1.setImageDrawable(img);
                     IB1.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
-                    IB1.setBackgroundResource(R.drawable.deux);
+                    Drawable img = resize(getDrawable(R.drawable.deux),2);
+                    IB1.setImageDrawable(img);
                     IB1.setClickable(false);
                     joueur1Joue = true;
                 }
@@ -61,12 +67,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB2.setBackgroundResource(R.drawable.un2);
+                    Drawable img = resize(getDrawable(R.drawable.un2),2);
+                    IB2.setImageDrawable(img);
                     IB2.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
-                    IB2.setBackgroundResource(R.drawable.deux);
+                    Drawable img = resize(getDrawable(R.drawable.deux),2);
+                    IB2.setImageDrawable(img);
                     IB2.setClickable(false);
                     joueur1Joue = true;
                 }
@@ -79,12 +87,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB3.setBackgroundResource(R.drawable.un2);
+                    Drawable img = resize(getDrawable(R.drawable.un2),2);
+                    IB3.setImageDrawable(img);
                     IB3.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
-                    IB3.setBackgroundResource(R.drawable.deux);
+                    Drawable img = resize(getDrawable(R.drawable.deux),2);
+                    IB3.setImageDrawable(img);
                     IB3.setClickable(false);
                     joueur1Joue = true;
                 }
@@ -97,12 +107,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB4.setBackgroundResource(R.drawable.un2);
+                    Drawable img = resize(getDrawable(R.drawable.un2),2);
+                    IB4.setImageDrawable(img);
                     IB4.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
-                    IB4.setBackgroundResource(R.drawable.deux);
+                    Drawable img = resize(getDrawable(R.drawable.deux),2);
+                    IB4.setImageDrawable(img);
                     IB4.setClickable(false);
                     joueur1Joue = true;
                 }
@@ -115,12 +127,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB5.setBackgroundResource(R.drawable.un2);
+                    Drawable img = resize(getDrawable(R.drawable.un2),2);
+                    IB5.setImageDrawable(img);
                     IB5.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
-                    IB5.setBackgroundResource(R.drawable.deux);
+                    Drawable img = resize(getDrawable(R.drawable.deux),2);
+                    IB5.setImageDrawable(img);
                     IB5.setClickable(false);
                     joueur1Joue = true;
                 }
@@ -133,12 +147,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB6.setBackgroundResource(R.drawable.un2);
+                    Drawable img = resize(getDrawable(R.drawable.un2),2);
+                    IB6.setImageDrawable(img);
                     IB6.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
-                    IB6.setBackgroundResource(R.drawable.deux);
+                    Drawable img = resize(getDrawable(R.drawable.deux),2);
+                    IB6.setImageDrawable(img);
                     IB6.setClickable(false);
                     joueur1Joue = true;
                 }
@@ -151,12 +167,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB7.setBackgroundResource(R.drawable.un2);
+                    Drawable img = resize(getDrawable(R.drawable.un2),2);
+                    IB7.setImageDrawable(img);
                     IB7.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
-                    IB7.setBackgroundResource(R.drawable.deux);
+                    Drawable img = resize(getDrawable(R.drawable.deux),2);
+                    IB7.setImageDrawable(img);
                     IB7.setClickable(false);
                     joueur1Joue = true;
                 }
@@ -169,12 +187,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB8.setBackgroundResource(R.drawable.un2);
+                    Drawable img = resize(getDrawable(R.drawable.un2),2);
+                    IB8.setImageDrawable(img);
                     IB8.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
-                    IB8.setBackgroundResource(R.drawable.deux);
+                    Drawable img = resize(getDrawable(R.drawable.deux),2);
+                    IB8.setImageDrawable(img);
                     IB8.setClickable(false);
                     joueur1Joue = true;
                 }
@@ -187,16 +207,27 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB9.setBackgroundResource(R.drawable.un2);
+                    Drawable img = resize(getDrawable(R.drawable.un2),2);
+                    IB9.setImageDrawable(img);
+
+                    //IB9.setBackgroundResource(R.drawable.un2);
                     IB9.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
-                    IB9.setBackgroundResource(R.drawable.deux);
+                    Drawable img = resize(getDrawable(R.drawable.deux),2);
+                    IB9.setImageDrawable(img);
+                    //B9.setBackgroundResource(R.drawable.deux);
                     IB9.setClickable(false);
                     joueur1Joue = true;
                 }
             }
         });
     }
+    private Drawable resize(Drawable image, Integer div) {
+        Bitmap b = ((BitmapDrawable)image).getBitmap();
+        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, Math.round(image.getIntrinsicWidth()/div), Math.round(image.getIntrinsicHeight()/div), false);
+        return new BitmapDrawable(getResources(), bitmapResized);
+    }
+    
 }

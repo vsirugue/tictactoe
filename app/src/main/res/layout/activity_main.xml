@@ -6,120 +6,144 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <GridLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:rowCount="3"
-        android:columnCount="3">
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/IB1"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="X">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"
+            android:orientation="horizontal">
 
-        </ImageButton>
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/IB2"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="X">
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.85"
+            android:rowCount="3"
+            android:columnCount="3"
+            android:padding="2dp">
 
-        </ImageButton>
+            <ImageButton
+                android:id="@+id/IB1"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_margin="2dp"
+                android:background="@color/colorAccent">
 
-        <ImageButton
-            android:id="@+id/IB3"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="X">
+            </ImageButton>
 
-        </ImageButton>
+            <ImageButton
+                android:id="@+id/IB2"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_margin="2dp"
+                android:background="@color/colorAccent">
 
-        <ImageButton
-            android:id="@+id/IB4"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="X">
+            </ImageButton>
 
-        </ImageButton>
+            <ImageButton
+                android:id="@+id/IB3"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_margin="2dp"
+                android:background="@color/colorAccent">
 
-        <ImageButton
-            android:id="@+id/IB5"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="X">
+            </ImageButton>
 
-        </ImageButton>
+            <ImageButton
+                android:id="@+id/IB4"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_margin="2dp"
+                android:background="@color/colorAccent">
 
-        <ImageButton
-            android:id="@+id/IB6"
-            android:layout_row="1"
-            android:layout_column="2"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="X">
+            </ImageButton>
 
-        </ImageButton>
+            <ImageButton
+                android:id="@+id/IB5"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_margin="2dp"
+                android:background="@color/colorAccent">
 
-        <ImageButton
-            android:id="@+id/IB7"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="X">
+            </ImageButton>
 
-        </ImageButton>
+            <ImageButton
+                android:id="@+id/IB6"
+                android:layout_row="1"
+                android:layout_column="2"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_margin="2dp"
+                android:background="@color/colorAccent">
 
-        <ImageButton
-            android:id="@+id/IB8"
-            android:layout_row="2"
-            android:layout_column="1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="X">
+            </ImageButton>
 
-        </ImageButton>
+            <ImageButton
+                android:id="@+id/IB7"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_margin="2dp"
+                android:background="@color/colorAccent">
 
-        <ImageButton
-            android:id="@+id/IB9"
-            android:layout_row="2"
-            android:layout_column="2"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="X">
+            </ImageButton>
 
-        </ImageButton>
+            <ImageButton
+                android:id="@+id/IB8"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_margin="2dp"
+                android:background="@color/colorAccent">
 
-    </GridLayout>
+            </ImageButton>
 
+            <ImageButton
+                android:id="@+id/IB9"
+                android:layout_row="2"
+                android:layout_column="2"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_margin="2dp"
+                android:background="@color/colorAccent">
+
+            </ImageButton>
+
+        </GridLayout>
+    </LinearLayout>
 </RelativeLayout>
