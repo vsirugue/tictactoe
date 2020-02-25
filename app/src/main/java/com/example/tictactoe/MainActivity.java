@@ -43,11 +43,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB1.setBackgroundResource(R.drawable.un);
+                    IB1.setBackgroundResource(R.drawable.un2);
+                    IB1.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     IB1.setBackgroundResource(R.drawable.deux);
+                    IB1.setClickable(false);
                     joueur1Joue = true;
                 }
             }
@@ -59,11 +61,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB2.setBackgroundResource(R.drawable.un);
+                    IB2.setBackgroundResource(R.drawable.un2);
+                    IB2.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     IB2.setBackgroundResource(R.drawable.deux);
+                    IB2.setClickable(false);
                     joueur1Joue = true;
                 }
             }
@@ -75,11 +79,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB3.setBackgroundResource(R.drawable.un);
+                    IB3.setBackgroundResource(R.drawable.un2);
+                    IB3.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     IB3.setBackgroundResource(R.drawable.deux);
+                    IB3.setClickable(false);
                     joueur1Joue = true;
                 }
             }
@@ -91,11 +97,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB4.setBackgroundResource(R.drawable.un);
+                    IB4.setBackgroundResource(R.drawable.un2);
+                    IB4.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     IB4.setBackgroundResource(R.drawable.deux);
+                    IB4.setClickable(false);
                     joueur1Joue = true;
                 }
             }
@@ -107,11 +115,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB5.setBackgroundResource(R.drawable.un);
+                    IB5.setBackgroundResource(R.drawable.un2);
+                    IB5.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     IB5.setBackgroundResource(R.drawable.deux);
+                    IB5.setClickable(false);
                     joueur1Joue = true;
                 }
             }
@@ -123,11 +133,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB6.setBackgroundResource(R.drawable.un);
+                    IB6.setBackgroundResource(R.drawable.un2);
+                    IB6.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     IB6.setBackgroundResource(R.drawable.deux);
+                    IB6.setClickable(false);
                     joueur1Joue = true;
                 }
             }
@@ -139,11 +151,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB7.setBackgroundResource(R.drawable.un);
+                    IB7.setBackgroundResource(R.drawable.un2);
+                    IB7.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     IB7.setBackgroundResource(R.drawable.deux);
+                    IB7.setClickable(false);
                     joueur1Joue = true;
                 }
             }
@@ -155,11 +169,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB8.setBackgroundResource(R.drawable.un);
+                    IB8.setBackgroundResource(R.drawable.un2);
+                    IB8.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     IB8.setBackgroundResource(R.drawable.deux);
+                    IB8.setClickable(false);
                     joueur1Joue = true;
                 }
             }
@@ -171,11 +187,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
                 toast.show();
                 if (joueur1Joue){
-                    IB9.setBackgroundResource(R.drawable.un);
+                    IB9.setBackgroundResource(R.drawable.un2);
+                    IB9.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     IB9.setBackgroundResource(R.drawable.deux);
+                    IB9.setClickable(false);
                     joueur1Joue = true;
                 }
             }
