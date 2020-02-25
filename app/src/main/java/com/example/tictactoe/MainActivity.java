@@ -21,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference boardRef = database.getReference("board");
 
     private static ImageButton IB1, IB2, IB3, IB4, IB5, IB6, IB7, IB8, IB9 ;
+    private static boolean getButton1, getButton2,getButton3,getButton4,getButton5,getButton6,getButton7,getButton8,getButton9;
     private boolean joueur1Joue = true;
+    private boolean win = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,18 +46,21 @@ public class MainActivity extends AppCompatActivity {
             @
                     Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
-                toast.show();
                 if (joueur1Joue){
                     Drawable img = resize(getDrawable(R.drawable.un2),2);
                     IB1.setImageDrawable(img);
+                    getButton1 = true;
                     IB1.setClickable(false);
+                    winGame();
                     joueur1Joue = false;
+
                 }
                 else {
                     Drawable img = resize(getDrawable(R.drawable.deux),2);
                     IB1.setImageDrawable(img);
+                    getButton1 = false;
                     IB1.setClickable(false);
+                    winGame();
                     joueur1Joue = true;
                 }
             }
@@ -64,18 +69,20 @@ public class MainActivity extends AppCompatActivity {
             @
                     Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
-                toast.show();
                 if (joueur1Joue){
                     Drawable img = resize(getDrawable(R.drawable.un2),2);
                     IB2.setImageDrawable(img);
+                    getButton2 = true;
                     IB2.setClickable(false);
+                    winGame();
                     joueur1Joue = false;
                 }
                 else {
                     Drawable img = resize(getDrawable(R.drawable.deux),2);
                     IB2.setImageDrawable(img);
+                    getButton2 = false;
                     IB2.setClickable(false);
+                    winGame();
                     joueur1Joue = true;
                 }
             }
@@ -84,18 +91,20 @@ public class MainActivity extends AppCompatActivity {
             @
                     Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
-                toast.show();
                 if (joueur1Joue){
                     Drawable img = resize(getDrawable(R.drawable.un2),2);
                     IB3.setImageDrawable(img);
+                    getButton3 = true;
                     IB3.setClickable(false);
+                    winGame();
                     joueur1Joue = false;
                 }
                 else {
                     Drawable img = resize(getDrawable(R.drawable.deux),2);
                     IB3.setImageDrawable(img);
+                    getButton3 = false;
                     IB3.setClickable(false);
+                    winGame();
                     joueur1Joue = true;
                 }
             }
@@ -104,17 +113,17 @@ public class MainActivity extends AppCompatActivity {
             @
                     Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
-                toast.show();
                 if (joueur1Joue){
                     Drawable img = resize(getDrawable(R.drawable.un2),2);
                     IB4.setImageDrawable(img);
+                    getButton4 = true;
                     IB4.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     Drawable img = resize(getDrawable(R.drawable.deux),2);
                     IB4.setImageDrawable(img);
+                    getButton4 = false;
                     IB4.setClickable(false);
                     joueur1Joue = true;
                 }
@@ -124,17 +133,17 @@ public class MainActivity extends AppCompatActivity {
             @
                     Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
-                toast.show();
                 if (joueur1Joue){
                     Drawable img = resize(getDrawable(R.drawable.un2),2);
                     IB5.setImageDrawable(img);
+                    getButton5 = true;
                     IB5.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     Drawable img = resize(getDrawable(R.drawable.deux),2);
                     IB5.setImageDrawable(img);
+                    getButton5 = false;
                     IB5.setClickable(false);
                     joueur1Joue = true;
                 }
@@ -144,17 +153,17 @@ public class MainActivity extends AppCompatActivity {
             @
                     Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
-                toast.show();
                 if (joueur1Joue){
                     Drawable img = resize(getDrawable(R.drawable.un2),2);
                     IB6.setImageDrawable(img);
+                    getButton6 = true;
                     IB6.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     Drawable img = resize(getDrawable(R.drawable.deux),2);
                     IB6.setImageDrawable(img);
+                    getButton6 = false;
                     IB6.setClickable(false);
                     joueur1Joue = true;
                 }
@@ -164,17 +173,17 @@ public class MainActivity extends AppCompatActivity {
             @
                     Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
-                toast.show();
                 if (joueur1Joue){
                     Drawable img = resize(getDrawable(R.drawable.un2),2);
                     IB7.setImageDrawable(img);
+                    getButton7 = true;
                     IB7.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     Drawable img = resize(getDrawable(R.drawable.deux),2);
                     IB7.setImageDrawable(img);
+                    getButton7 = false;
                     IB7.setClickable(false);
                     joueur1Joue = true;
                 }
@@ -184,17 +193,17 @@ public class MainActivity extends AppCompatActivity {
             @
                     Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
-                toast.show();
                 if (joueur1Joue){
                     Drawable img = resize(getDrawable(R.drawable.un2),2);
                     IB8.setImageDrawable(img);
+                    getButton8 = true;
                     IB8.setClickable(false);
                     joueur1Joue = false;
                 }
                 else {
                     Drawable img = resize(getDrawable(R.drawable.deux),2);
                     IB8.setImageDrawable(img);
+                    getButton8 = false;
                     IB8.setClickable(false);
                     joueur1Joue = true;
                 }
@@ -204,11 +213,10 @@ public class MainActivity extends AppCompatActivity {
             @
                     Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Bip ! Bip ! I'm a toast !", Toast.LENGTH_SHORT);
-                toast.show();
                 if (joueur1Joue){
                     Drawable img = resize(getDrawable(R.drawable.un2),2);
                     IB9.setImageDrawable(img);
+                    getButton9 = true;
 
                     //IB9.setBackgroundResource(R.drawable.un2);
                     IB9.setClickable(false);
@@ -217,6 +225,8 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     Drawable img = resize(getDrawable(R.drawable.deux),2);
                     IB9.setImageDrawable(img);
+                    getButton9 = false;
+
                     //B9.setBackgroundResource(R.drawable.deux);
                     IB9.setClickable(false);
                     joueur1Joue = true;
@@ -229,5 +239,88 @@ public class MainActivity extends AppCompatActivity {
         Bitmap bitmapResized = Bitmap.createScaledBitmap(b, Math.round(image.getIntrinsicWidth()/div), Math.round(image.getIntrinsicHeight()/div), false);
         return new BitmapDrawable(getResources(), bitmapResized);
     }
-    
+
+    private void winGame() {
+        if ((getButton1 == getButton2)&&(getButton2 == getButton3)){
+            if(joueur1Joue){
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else{
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+        if ((getButton4 == getButton5)&&(getButton5 == getButton6)){
+            if(joueur1Joue){
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else{
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+        if ((getButton7 == getButton8)&&(getButton8 == getButton9)){
+            if(joueur1Joue){
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else{
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+        if ((getButton1 == getButton4)&&(getButton4 == getButton7)){
+            if(joueur1Joue){
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else{
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+        if ((getButton2 == getButton5)&&(getButton5 == getButton8)){
+            if(joueur1Joue){
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else{
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+        if ((getButton3 == getButton6)&&(getButton6 == getButton9)){
+            if(joueur1Joue){
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else{
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+        if ((getButton1 == getButton5)&&(getButton5 == getButton9)){
+            if(joueur1Joue){
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else{
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+        if ((getButton3 == getButton5)&&(getButton5 == getButton7)){
+            if(joueur1Joue){
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else{
+                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+    }
+
 }
