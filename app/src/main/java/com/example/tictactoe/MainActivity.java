@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private ImageButton IB1, IB2, IB3, IB4, IB5, IB6, IB7, IB8, IB9 ;
-    public TextView txtP1, txtP2;
+    public TextView txtP1, txtP2, txtActive;
 
     private  ValueEventListener boardRefListener = new ValueEventListener() {
         @Override
@@ -110,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
 
         txtP1 = findViewById(R.id.textViewP1);
         txtP2 = findViewById(R.id.textViewP2);
+        txtActive = findViewById(R.id.textViewActive);
+
+        setListeners();
+        resetBoard();
 
         Bundle extras = getIntent().getExtras();
         playerNumber = extras.getString("playerNumber");
@@ -129,8 +133,7 @@ public class MainActivity extends AppCompatActivity {
         }
         txtP2.setText(playerNumber);
 
-        setListeners();
-        resetBoard();
+
 
     }
 

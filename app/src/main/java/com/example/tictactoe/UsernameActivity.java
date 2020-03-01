@@ -69,12 +69,14 @@ public class UsernameActivity extends AppCompatActivity {
                 editor.apply();
 
                 if (!readyPlayer1) {
+                    playersRef.child("player1").child("ready").setValue("1");
                     callActivity.putExtra("name", usrEdit.getText());
                     callActivity.putExtra("playerNumber", "1");
                     startActivity(callActivity);
                 }
                 else {
                     if (!readyPlayer2) {
+                        playersRef.child("player2").child("ready").setValue("1");
                         callActivity.putExtra("name", usrEdit.getText());
                         callActivity.putExtra("playerNumber", "2");
                         startActivity(callActivity);
