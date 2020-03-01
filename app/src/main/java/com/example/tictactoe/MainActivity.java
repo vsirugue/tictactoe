@@ -38,10 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private ImageButton IB1, IB2, IB3, IB4, IB5, IB6, IB7, IB8, IB9 ;
-    private TextView txt;
-    private static boolean getButton1, getButton2,getButton3,getButton4,getButton5,getButton6,getButton7,getButton8,getButton9;
-    private boolean joueur1Joue = true;
-    private boolean win = false;
+    public TextView txtP1, txtP2;
 
     private  ValueEventListener boardRefListener = new ValueEventListener() {
         @Override
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     caseEmpty[i] = false;
                 }
             }
-            txt.setText(grid[5].toString());
+            txtP1.setText(grid[5].toString());
         }
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -64,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             activePlayer = dataSnapshot.getValue().toString();
-            txt.setText(activePlayer);
         }
 
         @Override
@@ -109,15 +105,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         OnClickButtonListener(savedInstanceState);
+
+        txtP1 = findViewById(R.id.textViewP1);
+        txtP2 = findViewById(R.id.textViewP2);
+
+        Bundle extras = getIntent().getExtras();
+        playerNumber = extras.getString("playerNumber");
+        if (playerNumber == "1") {
+            playersRef.child("player1").child("name").setValue(extras.getString("name"));
+            playersRef.child("player1").child("ready").setValue("1");
+        }
+        if (playerNumber == "2") {
+            playersRef.child("player2").child("name").setValue(extras.getString("name"));
+            playersRef.child("player2").child("ready").setValue("1");
+        }
+        txtP2.setText(playerNumber);
+
         setListeners();
 
     }
 
     public void OnClickButtonListener(Bundle savedInstanceState) {
-        txt = findViewById(R.id.textViewP1);
         IB1 = (ImageButton) findViewById(R.id.IB1);
         IB2 = (ImageButton) findViewById(R.id.IB2);
         IB3 = (ImageButton) findViewById(R.id.IB3);
@@ -128,198 +138,61 @@ public class MainActivity extends AppCompatActivity {
         IB8 = (ImageButton) findViewById(R.id.IB8);
         IB9 = (ImageButton) findViewById(R.id.IB9);
         IB1.setOnClickListener(new View.OnClickListener() {
-            @
-                    Override
+            @Override
             public void onClick(View v) {
-                if (joueur1Joue){
-                    Drawable img = resize(getDrawable(R.drawable.un2),2);
-                    IB1.setImageDrawable(img);
-                    getButton1 = true;
-                    IB1.setClickable(false);
-                    //winGame();
-                    joueur1Joue = false;
-                    //getCurrentPlayer();
-
-                }
-                else {
-                    Drawable img = resize(getDrawable(R.drawable.deux),2);
-                    IB1.setImageDrawable(img);
-                    getButton1 = false;
-                    IB1.setClickable(false);
-                    //winGame();
-                    joueur1Joue = true;
-                }
+                clickCase(IB1, 0);
             }
         });
         IB2.setOnClickListener(new View.OnClickListener() {
-            @
-                    Override
+            @Override
             public void onClick(View v) {
-                if (joueur1Joue){
-                    Drawable img = resize(getDrawable(R.drawable.un2),2);
-                    IB2.setImageDrawable(img);
-                    getButton2 = true;
-                    IB2.setClickable(false);
-                    //winGame();
-                    joueur1Joue = false;
-                }
-                else {
-                    Drawable img = resize(getDrawable(R.drawable.deux),2);
-                    IB2.setImageDrawable(img);
-                    getButton2 = false;
-                    IB2.setClickable(false);
-                    //winGame();
-                    joueur1Joue = true;
-                }
+                clickCase(IB2, 1);
             }
         });
         IB3.setOnClickListener(new View.OnClickListener() {
-            @
-                    Override
+            @Override
             public void onClick(View v) {
-                if (joueur1Joue){
-                    Drawable img = resize(getDrawable(R.drawable.un2),2);
-                    IB3.setImageDrawable(img);
-                    getButton3 = true;
-                    IB3.setClickable(false);
-                    //winGame();
-                    joueur1Joue = false;
-                }
-                else {
-                    Drawable img = resize(getDrawable(R.drawable.deux),2);
-                    IB3.setImageDrawable(img);
-                    getButton3 = false;
-                    IB3.setClickable(false);
-                    //winGame();
-                    joueur1Joue = true;
-                }
+                clickCase(IB3, 2);
             }
         });
         IB4.setOnClickListener(new View.OnClickListener() {
-            @
-                    Override
+            @Override
             public void onClick(View v) {
-                if (joueur1Joue){
-                    Drawable img = resize(getDrawable(R.drawable.un2),2);
-                    IB4.setImageDrawable(img);
-                    getButton4 = true;
-                    IB4.setClickable(false);
-                    joueur1Joue = false;
-                }
-                else {
-                    Drawable img = resize(getDrawable(R.drawable.deux),2);
-                    IB4.setImageDrawable(img);
-                    getButton4 = false;
-                    IB4.setClickable(false);
-                    joueur1Joue = true;
-                }
+                clickCase(IB4, 3);
             }
         });
         IB5.setOnClickListener(new View.OnClickListener() {
-            @
-                    Override
+            @Override
             public void onClick(View v) {
-                if (joueur1Joue){
-                    Drawable img = resize(getDrawable(R.drawable.un2),2);
-                    IB5.setImageDrawable(img);
-                    getButton5 = true;
-                    IB5.setClickable(false);
-                    joueur1Joue = false;
-                }
-                else {
-                    Drawable img = resize(getDrawable(R.drawable.deux),2);
-                    IB5.setImageDrawable(img);
-                    getButton5 = false;
-                    IB5.setClickable(false);
-                    joueur1Joue = true;
-                }
+                clickCase(IB5, 4);
             }
         });
         IB6.setOnClickListener(new View.OnClickListener() {
-            @
-                    Override
+            @Override
             public void onClick(View v) {
-                if (joueur1Joue){
-                    Drawable img = resize(getDrawable(R.drawable.un2),2);
-                    IB6.setImageDrawable(img);
-                    getButton6 = true;
-                    IB6.setClickable(false);
-                    joueur1Joue = false;
-                }
-                else {
-                    Drawable img = resize(getDrawable(R.drawable.deux),2);
-                    IB6.setImageDrawable(img);
-                    getButton6 = false;
-                    IB6.setClickable(false);
-                    joueur1Joue = true;
-                }
+                clickCase(IB6, 5);
             }
         });
         IB7.setOnClickListener(new View.OnClickListener() {
-            @
-                    Override
+            @Override
             public void onClick(View v) {
-                if (joueur1Joue){
-                    Drawable img = resize(getDrawable(R.drawable.un2),2);
-                    IB7.setImageDrawable(img);
-                    getButton7 = true;
-                    IB7.setClickable(false);
-                    joueur1Joue = false;
-                }
-                else {
-                    Drawable img = resize(getDrawable(R.drawable.deux),2);
-                    IB7.setImageDrawable(img);
-                    getButton7 = false;
-                    IB7.setClickable(false);
-                    joueur1Joue = true;
-                }
+                clickCase(IB7, 6);
             }
         });
         IB8.setOnClickListener(new View.OnClickListener() {
-            @
-                    Override
+            @Override
             public void onClick(View v) {
-                if (joueur1Joue){
-                    Drawable img = resize(getDrawable(R.drawable.un2),2);
-                    IB8.setImageDrawable(img);
-                    getButton8 = true;
-                    IB8.setClickable(false);
-                    joueur1Joue = false;
-                }
-                else {
-                    Drawable img = resize(getDrawable(R.drawable.deux),2);
-                    IB8.setImageDrawable(img);
-                    getButton8 = false;
-                    IB8.setClickable(false);
-                    joueur1Joue = true;
-                }
+                clickCase(IB8, 7);
             }
         });
         IB9.setOnClickListener(new View.OnClickListener() {
-            @
-                    Override
+            @Override
             public void onClick(View v) {
-                if (joueur1Joue){
-                    Drawable img = resize(getDrawable(R.drawable.un2),2);
-                    IB9.setImageDrawable(img);
-                    getButton9 = true;
-
-                    //IB9.setBackgroundResource(R.drawable.un2);
-                    IB9.setClickable(false);
-                    joueur1Joue = false;
-                }
-                else {
-                    Drawable img = resize(getDrawable(R.drawable.deux),2);
-                    IB9.setImageDrawable(img);
-                    getButton9 = false;
-
-                    //B9.setBackgroundResource(R.drawable.deux);
-                    IB9.setClickable(false);
-                    joueur1Joue = true;
-                }
+                clickCase(IB9, 8);
             }
         });
     }
+
     private Drawable resize(Drawable image, Integer div) {
         Bitmap b = ((BitmapDrawable)image).getBitmap();
         Bitmap bitmapResized = Bitmap.createScaledBitmap(b, Math.round(image.getIntrinsicWidth()/div), Math.round(image.getIntrinsicHeight()/div), false);
@@ -333,6 +206,31 @@ public class MainActivity extends AppCompatActivity {
         playersRef.addValueEventListener(playersListener);
     }
 
+    public void clickCase(ImageButton ib, Integer caseNum){
+        if (activePlayer == playerNumber){
+            if (caseEmpty[caseNum]){
+                if (playerNumber == "1") {
+                    Drawable img = resize(getDrawable(R.drawable.un2), 2);
+                    ib.setImageDrawable(img);
+                    boardRef.child("case"+caseNum.toString()).setValue(activePlayer);
+                } else if (playerNumber == "2") {
+                    Drawable img = resize(getDrawable(R.drawable.deux),2);
+                    ib.setImageDrawable(img);
+                    boardRef.child("case"+caseNum.toString()).setValue(activePlayer);
+                }
+                caseEmpty[0] = false;
+                ib.setClickable(false);
+
+                if (win()!= 0){
+                    //trigger fin de partie
+                }
+            }
+        } else {
+            //toast not your turn
+            Toast.makeText(MainActivity.this, "Not your turn !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void resetBoard(){
         boardRef.child("case0").setValue(0);
         boardRef.child("case1").setValue(0);
@@ -343,6 +241,15 @@ public class MainActivity extends AppCompatActivity {
         boardRef.child("case6").setValue(0);
         boardRef.child("case7").setValue(0);
         boardRef.child("case8").setValue(0);
+    }
+
+    private void resetGame(){
+        resetBoard();
+        playersRef.child("player1").child("ready").setValue("0");
+        playersRef.child("player1").child("name").setValue("Player1");
+        playersRef.child("player1").child("ready").setValue("0");
+        playersRef.child("player1").child("name").setValue("Player2");
+
     }
 
     private Integer win(){
@@ -382,11 +289,6 @@ public class MainActivity extends AppCompatActivity {
 }
 
 /*TO DO
-FIREBASE
-player1connected
-player2connected
-activePlayer
-
 
 startGame();
 
@@ -399,15 +301,18 @@ reset grid
 set active player to 1.
 }
 
-assignPlayerNumber() {
-si player 1 connected assigne a joueur 2
-si joueurs 1et2 connected : partie full
-}
+txtfields "online" pour chaque joueur + active player
+
+
+if p1 + p2 offline kick vers accueil
 
 if winner
 endGame() {
 reset board
 deco joueur
-renvoi activite d'accueil
+pop up victoire/defaite -> renvoi activite d'accueil
+
+
+reset_firebase pseudo
 }
 */

@@ -62,7 +62,7 @@ public class UsernameActivity extends AppCompatActivity {
         usrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(UsernameActivity.this, "Username : ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UsernameActivity.this, "Username : "+ usrEdit.getText(), Toast.LENGTH_SHORT).show();
                 SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("username", usrEdit.getText().toString());
