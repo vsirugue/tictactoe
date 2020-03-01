@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             activePlayer = dataSnapshot.getValue().toString();
+            txtActive.setText(activePlayer);
         }
 
         @Override
@@ -217,6 +218,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickCase(ImageButton ib, Integer caseNum){
+        if (activePlayer == "0" && readyPlayer1 && readyPlayer2){
+            activePlayerRef.setValue("1");
+        }
         if (activePlayer == playerNumber){
             if (caseEmpty[caseNum]){
                 if (playerNumber == "1") {
