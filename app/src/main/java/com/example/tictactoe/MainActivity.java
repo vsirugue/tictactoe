@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
                     caseEmpty[i] = false;
                 }
             }
-            txtP1.setText(grid[5].toString());
         }
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             activePlayer = dataSnapshot.getValue().toString();
-            txtActive.setText(activePlayer);
+            txtActive.setText("active player : "+activePlayer+" | playerNumber " +playerNumber+" | ready: 1 "+readyPlayer1+" - 2 "+readyPlayer2);
         }
 
         @Override
@@ -86,7 +85,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             player1name = dataSnapshot.child("player1").child("name").getValue().toString();
+            txtP1.setText("Player 1 : " + player1name);
             player2name = dataSnapshot.child("player2").child("name").getValue().toString();
+            txtP2.setText("Player 2 : " + player2name);
             if (dataSnapshot.child("player1").child("ready").getValue().toString() == "1") {
                 readyPlayer1 = true;
             }
@@ -122,14 +123,14 @@ public class MainActivity extends AppCompatActivity {
             playersRef.child("player1").child("name").setValue(extras.getString("name"));
             playersRef.child("player1").child("ready").setValue("1");
             if (readyPlayer1 && readyPlayer2) {
-                activePlayerRef.setValue("1");
+                activePlayerRef.setValue(1);
             }
         }
         if (playerNumber == "2") {
             playersRef.child("player2").child("name").setValue(extras.getString("name"));
             playersRef.child("player2").child("ready").setValue("1");
             if (readyPlayer1 && readyPlayer2) {
-                activePlayerRef.setValue("1");
+                activePlayerRef.setValue(1);
             }
         }
         txtP2.setText(playerNumber);
@@ -219,22 +220,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickCase(ImageButton ib, Integer caseNum){
         if (activePlayer == "0" && readyPlayer1 && readyPlayer2){
-            activePlayerRef.setValue("1");
+            activePlayerRef.setValue(1);
         }
         if (activePlayer == playerNumber){
             if (caseEmpty[caseNum]){
                 if (playerNumber == "1") {
                     Drawable img = resize(getDrawable(R.drawable.un2), 2);
                     ib.setImageDrawable(img);
-                    boardRef.child("case"+caseNum.toString()).setValue(activePlayer);
-                    activePlayerRef.setValue("2");
+                    boardRef.child("case"+caseNum.toString()).setValue(Integer.parseInt(activePlayer));
+                    activePlayerRef.setValue(2);
                 } else if (playerNumber == "2") {
                     Drawable img = resize(getDrawable(R.drawable.deux),2);
                     ib.setImageDrawable(img);
-                    boardRef.child("case"+caseNum.toString()).setValue(activePlayer);
-                    activePlayerRef.setValue("1");
+                    boardRef.child("case"+caseNum.toString()).setValue(Integer.parseInt(activePlayer));
+                    activePlayerRef.setValue(1);
                 }
-                caseEmpty[0] = false;
+                caseEmpty[caseNum] = false;
                 ib.setClickable(false);
 
                 if (win()!= 0){
@@ -261,9 +262,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void resetGame(){
         resetBoard();
-        playersRef.child("player1").child("ready").setValue("0");
+        playersRef.child("player1").child("ready").setValue(0);
         playersRef.child("player1").child("name").setValue("Player1");
-        playersRef.child("player1").child("ready").setValue("0");
+        playersRef.child("player1").child("ready").setValue(0);
         playersRef.child("player1").child("name").setValue("Player2");
 
     }

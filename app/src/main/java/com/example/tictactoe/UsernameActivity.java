@@ -24,8 +24,8 @@ public class UsernameActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference playersRef = database.getReference("players");
 
-    public boolean readyPlayer1 = false;
-    public boolean readyPlayer2 = false;
+    public boolean readyPlayer1 = true;
+    public boolean readyPlayer2 = true;
     public String player1name = "Player 1";
     public String player2name = "Player 2";
 
@@ -36,9 +36,13 @@ public class UsernameActivity extends AppCompatActivity {
             player2name = dataSnapshot.child("player2").child("name").getValue().toString();
             if (dataSnapshot.child("player1").child("ready").getValue().toString() == "1") {
                 readyPlayer1 = true;
+            } else {
+                readyPlayer1 = false;
             }
             if (dataSnapshot.child("player2").child("ready").getValue().toString() == "1") {
                 readyPlayer2 = true;
+            } else {
+                readyPlayer2 = false;
             }
         }
 
@@ -54,10 +58,14 @@ public class UsernameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_username);
 
+        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
+        String username = prefs.getString("text", null);
+
         playersRef.addValueEventListener(playersListener);
 
         Button usrBtn = findViewById(R.id.usernameButton);
         final EditText usrEdit = findViewById(R.id.usernameEditText);
+        usrEdit.setText(username);
         final Intent callActivity = new Intent(getApplicationContext(), MainActivity.class);
         usrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,14 +77,14 @@ public class UsernameActivity extends AppCompatActivity {
                 editor.apply();
 
                 if (!readyPlayer1) {
-                    playersRef.child("player1").child("ready").setValue("1");
+                    playersRef.child("player1").child("ready").setValue(1);
                     callActivity.putExtra("name", usrEdit.getText());
                     callActivity.putExtra("playerNumber", "1");
                     startActivity(callActivity);
                 }
                 else {
                     if (!readyPlayer2) {
-                        playersRef.child("player2").child("ready").setValue("1");
+                        playersRef.child("player2").child("ready").setValue(1);
                         callActivity.putExtra("name", usrEdit.getText());
                         callActivity.putExtra("playerNumber", "2");
                         startActivity(callActivity);
@@ -85,8 +93,6 @@ public class UsernameActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Room FULL, please wait.", Toast.LENGTH_LONG).show();
                     }
                 }
-                callActivity.putExtra("name", usrEdit.getText());
-                startActivity(callActivity);
             }
         });
     }
