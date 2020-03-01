@@ -3,13 +3,11 @@ package com.example.tictactoe;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.pm.ApplicationInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference playersRef = database.getReference("players");
 
     public Integer[] grid = {0,0,0,0,0,0,0,0,0,0};
+    public boolean[] caseEmpty = {true,true,true,true,true,true,true,true,true};
     public String activePlayer = "0";
     public String winner ="0";
     public boolean readyPlayer1 = false;
@@ -49,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             for(int i = 0; i <= 8; i++) {
                 grid[i] = Integer.parseInt(dataSnapshot.child("case"+ i).getValue().toString());
+                if (grid[i] != 0) {
+                    caseEmpty[i] = false;
+                }
             }
             txt.setText(grid[5].toString());
         }
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OnClickButtonListener(Bundle savedInstanceState) {
-        txt = findViewById(R.id.textView);
+        txt = findViewById(R.id.textViewP1);
         IB1 = (ImageButton) findViewById(R.id.IB1);
         IB2 = (ImageButton) findViewById(R.id.IB2);
         IB3 = (ImageButton) findViewById(R.id.IB3);
