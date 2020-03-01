@@ -1,5 +1,6 @@
 package com.example.tictactoe;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.ApplicationInfo;
@@ -12,8 +13,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     IB1.setImageDrawable(img);
                     getButton1 = true;
                     IB1.setClickable(false);
-                    winGame();
+                    //winGame();
                     joueur1Joue = false;
 
                 }
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                     IB1.setImageDrawable(img);
                     getButton1 = false;
                     IB1.setClickable(false);
-                    winGame();
+                    //winGame();
                     joueur1Joue = true;
                 }
             }
@@ -74,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     IB2.setImageDrawable(img);
                     getButton2 = true;
                     IB2.setClickable(false);
-                    winGame();
+                    //winGame();
                     joueur1Joue = false;
                 }
                 else {
@@ -82,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     IB2.setImageDrawable(img);
                     getButton2 = false;
                     IB2.setClickable(false);
-                    winGame();
+                    //winGame();
                     joueur1Joue = true;
                 }
             }
@@ -96,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     IB3.setImageDrawable(img);
                     getButton3 = true;
                     IB3.setClickable(false);
-                    winGame();
+                    //winGame();
                     joueur1Joue = false;
                 }
                 else {
@@ -104,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                     IB3.setImageDrawable(img);
                     getButton3 = false;
                     IB3.setClickable(false);
-                    winGame();
+                    //winGame();
                     joueur1Joue = true;
                 }
             }
@@ -240,87 +244,98 @@ public class MainActivity extends AppCompatActivity {
         return new BitmapDrawable(getResources(), bitmapResized);
     }
 
-    private void winGame() {
-        if ((getButton1 == getButton2)&&(getButton2 == getButton3)){
-            if(joueur1Joue){
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-            else{
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
-        if ((getButton4 == getButton5)&&(getButton5 == getButton6)){
-            if(joueur1Joue){
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-            else{
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
-        if ((getButton7 == getButton8)&&(getButton8 == getButton9)){
-            if(joueur1Joue){
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-            else{
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
-        if ((getButton1 == getButton4)&&(getButton4 == getButton7)){
-            if(joueur1Joue){
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-            else{
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
-        if ((getButton2 == getButton5)&&(getButton5 == getButton8)){
-            if(joueur1Joue){
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-            else{
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
-        if ((getButton3 == getButton6)&&(getButton6 == getButton9)){
-            if(joueur1Joue){
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-            else{
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
-        if ((getButton1 == getButton5)&&(getButton5 == getButton9)){
-            if(joueur1Joue){
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-            else{
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
-        if ((getButton3 == getButton5)&&(getButton5 == getButton7)){
-            if(joueur1Joue){
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 1 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-            else{
-                Toast toast = Toast.makeText(getApplicationContext(), "Joueur 2 a gagné !", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
+    private void resetBoard(){
+        boardRef.child("case0").setValue(0);
+        boardRef.child("case1").setValue(0);
+        boardRef.child("case2").setValue(0);
+        boardRef.child("case3").setValue(0);
+        boardRef.child("case4").setValue(0);
+        boardRef.child("case5").setValue(0);
+        boardRef.child("case6").setValue(0);
+        boardRef.child("case7").setValue(0);
+        boardRef.child("case8").setValue(0);
     }
 
+    private Integer winner(){
+        final Integer[] grid = {0,0,0,0,0,0,0,0,0,0};
+
+        boardRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(int i = 0; i <= 8; i++) {
+                    grid[i] = Integer.parseInt(dataSnapshot.child("case"+ i).getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //toast erreur
+            }
+        });
+
+        Integer winner = 0;
+
+        if (grid[0] == grid[1] && grid[0] == grid[2] && grid[0] != 0) {
+            winner = grid[0];
+        }
+        if (grid[3] == grid[4] && grid[3] == grid[5] && grid[3] != 0) {
+            winner = grid[3];
+        }
+        if (grid[6] == grid[7] && grid[6] == grid[8] && grid[6] != 0) {
+            winner = grid[6];
+        }
+        if (grid[0] == grid[3] && grid[0] == grid[6] && grid[0] != 0) {
+            winner = grid[0];
+        }
+        if (grid[1] == grid[4] && grid[1] == grid[7] && grid[1] != 0) {
+            winner = grid[1];
+        }
+        if (grid[2] == grid[5] && grid[2] == grid[8] && grid[2] != 0) {
+            winner = grid[2];
+        }
+        if (grid[0] == grid[4] && grid[0] == grid[8] && grid[0] != 0) {
+            winner = grid[0];
+        }
+        if (grid[2] == grid[4] && grid[2] == grid[6] && grid[2] != 0) {
+            winner = grid[2];
+        }
+        return winner;
+    }
+
+    private void changeCurrentPlayer(){
+        //set active to the other player
+    }
+
+    private void getCurrentPlayer(){
+        //listener on active player
+    }
 }
+
+/*TO DO
+FIREBASE
+player1connected
+player2connected
+activePlayer
+
+
+changement activity
+Activity "accueil" avec un bouton join party + testfield pseudo (on gérera les pseudo plus tard);
+
+activePlayer a 0 par defaut.
+startGame() {
+reset grid
+set active player to 1.
+}
+
+assignPlayerNumber() {
+si player 1 connected assigne a joueur 2
+si joueurs 1et2 connected : partie full
+}
+
+if winner
+endGame() {
+reset board
+deco joueur
+renvoi activite d'accueil
+}
+*/
