@@ -116,14 +116,21 @@ public class MainActivity extends AppCompatActivity {
         if (playerNumber == "1") {
             playersRef.child("player1").child("name").setValue(extras.getString("name"));
             playersRef.child("player1").child("ready").setValue("1");
+            if (readyPlayer1 && readyPlayer2) {
+                activePlayerRef.setValue("1");
+            }
         }
         if (playerNumber == "2") {
             playersRef.child("player2").child("name").setValue(extras.getString("name"));
             playersRef.child("player2").child("ready").setValue("1");
+            if (readyPlayer1 && readyPlayer2) {
+                activePlayerRef.setValue("1");
+            }
         }
         txtP2.setText(playerNumber);
 
         setListeners();
+        resetBoard();
 
     }
 
@@ -213,10 +220,12 @@ public class MainActivity extends AppCompatActivity {
                     Drawable img = resize(getDrawable(R.drawable.un2), 2);
                     ib.setImageDrawable(img);
                     boardRef.child("case"+caseNum.toString()).setValue(activePlayer);
+                    activePlayerRef.setValue("2");
                 } else if (playerNumber == "2") {
                     Drawable img = resize(getDrawable(R.drawable.deux),2);
                     ib.setImageDrawable(img);
                     boardRef.child("case"+caseNum.toString()).setValue(activePlayer);
+                    activePlayerRef.setValue("1");
                 }
                 caseEmpty[0] = false;
                 ib.setClickable(false);
