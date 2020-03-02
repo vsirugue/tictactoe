@@ -1,12 +1,15 @@
 package com.example.tictactoe;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -36,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
     public String player2name = "Player 2";
     public String playerNumber = "0";
 
+    private boolean doubleBackToExitPressedOnce = false;
 
     private ImageButton[] ibGrid = {null, null, null, null, null, null, null, null, null};
-    //private ImageButton ibGrid[0], ibGrid[1], ibGrid[2], ibGrid[3], ibGrid[4], ibGrid[5], ibGrid[6], ibGrid[7], ibGrid[8];
     public TextView txtP1, txtP2, txtActive;
 
     private  ValueEventListener boardRefListener = new ValueEventListener() {
@@ -59,9 +62,11 @@ public class MainActivity extends AppCompatActivity {
                 //trigger fin de partie
                 if (winner == 1) {
                     Toast.makeText(MainActivity.this, "PLAYER 1 WIN", Toast.LENGTH_SHORT).show();
+                    alert(player1name);
                 }
                 if (winner == 2) {
                     Toast.makeText(MainActivity.this, "PLAYER 2 WIN", Toast.LENGTH_SHORT).show();
+                    alert(player2name);
                 }
                 //endGame();
             }
@@ -322,29 +327,41 @@ public class MainActivity extends AppCompatActivity {
         return winP;
     }
 
-        //activePlayerRef.addValueEventListener(vel);
-        //activePlayerRef.removeEventListener(vel);
+    private void alert(String winner) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("WINNER : " + winner);
+        // Add the buttons
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked OK button
+                resetGame();
+                finish();
+            }
+        });
+        // Set other dialog properties
+        // Create the AlertDialog
+        AlertDialog dialog = builder.create();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to quit the game", Toast.LENGTH_LONG).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
+
+    //activePlayerRef.removeEventListener(vel);
 }
-
-/*TO DO
-
-startGame();
-
-activePlayer a 0 par defaut.
-startGame() {
-reset grid
-set active player to 1.
-}
-
-
-if winner
-endGame() {
-reset board
-deco joueur
-pop up victoire/defaite -> renvoi activite d'accueil
-
-
-reset_firebase pseudo
-}
-*/

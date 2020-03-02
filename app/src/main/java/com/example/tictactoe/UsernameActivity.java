@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,11 +24,15 @@ public class UsernameActivity extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference playersRef = database.getReference("players");
+    DatabaseReference boardRef = database.getReference("board");
+    DatabaseReference activePlayerRef = database.getReference("active");
 
     public boolean readyPlayer1 = true;
     public boolean readyPlayer2 = true;
     public String player1name = "Player 1";
     public String player2name = "Player 2";
+
+    private boolean doubleBackToExitPressedOnce = false;
 
     private ValueEventListener playersListener = new ValueEventListener() {
         @Override
@@ -60,33 +65,77 @@ public class UsernameActivity extends AppCompatActivity {
         usrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("username", usrEdit.getText().toString());
-                editor.apply();
-
-                if (!readyPlayer1) {
-                    playersRef.child("player1").child("ready").setValue(1);
-                    playersRef.child("player1").child("name").setValue(usrEdit.getText().toString());
-                    callActivity.putExtra("name", usrEdit.getText());
-                    callActivity.putExtra("playerNumber", "1");
-                    Toast.makeText(UsernameActivity.this, "Username : "+ usrEdit.getText(), Toast.LENGTH_SHORT).show();
-                    startActivity(callActivity);
+                if (usrEdit.getText().equals("reset-firebase")){
+                    resetFB();
+                    Toast.makeText(UsernameActivity.this, "Firebase reset", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    if (!readyPlayer2) {
-                        playersRef.child("player2").child("ready").setValue(1);
-                        playersRef.child("player2").child("name").setValue(usrEdit.getText().toString());
+                    SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("username", usrEdit.getText().toString());
+                    editor.apply();
+
+                    if (!readyPlayer1) {
+                        playersRef.child("player1").child("ready").setValue(1);
+                        playersRef.child("player1").child("name").setValue(usrEdit.getText().toString());
                         callActivity.putExtra("name", usrEdit.getText());
-                        callActivity.putExtra("playerNumber", "2");
+                        callActivity.putExtra("playerNumber", "1");
                         Toast.makeText(UsernameActivity.this, "Username : "+ usrEdit.getText(), Toast.LENGTH_SHORT).show();
                         startActivity(callActivity);
                     }
                     else {
-                        Toast.makeText(getApplicationContext(),"Room FULL, please wait.", Toast.LENGTH_LONG).show();
+                        if (!readyPlayer2) {
+                            playersRef.child("player2").child("ready").setValue(1);
+                            playersRef.child("player2").child("name").setValue(usrEdit.getText().toString());
+                            callActivity.putExtra("name", usrEdit.getText());
+                            callActivity.putExtra("playerNumber", "2");
+                            Toast.makeText(UsernameActivity.this, "Username : "+ usrEdit.getText(), Toast.LENGTH_SHORT).show();
+                            startActivity(callActivity);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"Room FULL, please wait.", Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
+
             }
         });
+    }
+
+    private void resetFB() {
+        boardRef.child("case0").setValue(0);
+        boardRef.child("case1").setValue(0);
+        boardRef.child("case2").setValue(0);
+        boardRef.child("case3").setValue(0);
+        boardRef.child("case4").setValue(0);
+        boardRef.child("case5").setValue(0);
+        boardRef.child("case6").setValue(0);
+        boardRef.child("case7").setValue(0);
+        boardRef.child("case8").setValue(0);
+
+        playersRef.child("player1").child("ready").setValue(0);
+        playersRef.child("player1").child("name").setValue("Player1");
+        playersRef.child("player1").child("ready").setValue(0);
+        playersRef.child("player1").child("name").setValue("Player2");
+        activePlayerRef.setValue(1);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to quit the game", Toast.LENGTH_LONG).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }

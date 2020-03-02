@@ -25,5 +25,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Set Username" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/reset" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
