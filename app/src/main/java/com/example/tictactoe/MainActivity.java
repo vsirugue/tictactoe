@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     public Integer[] grid = {0,0,0,0,0,0,0,0,0,0};
     public boolean[] caseEmpty = {true,true,true,true,true,true,true,true,true};
-    public String activePlayer = "0";
+    public String activePlayer = "1";
     public String winner ="0";
     public boolean readyPlayer1 = false;
     public boolean readyPlayer2 = false;
@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     public String playerNumber = "0";
 
 
-    private ImageButton IB1, IB2, IB3, IB4, IB5, IB6, IB7, IB8, IB9 ;
+    private ImageButton[] ibGrid = {null, null, null, null, null, null, null, null, null};
+    //private ImageButton ibGrid[0], ibGrid[1], ibGrid[2], ibGrid[3], ibGrid[4], ibGrid[5], ibGrid[6], ibGrid[7], ibGrid[8];
     public TextView txtP1, txtP2, txtActive;
 
     private  ValueEventListener boardRefListener = new ValueEventListener() {
@@ -48,6 +49,21 @@ public class MainActivity extends AppCompatActivity {
                 if (grid[i] != 0) {
                     caseEmpty[i] = false;
                 }
+                setImg(ibGrid[i], i, grid[i]);
+            }
+            Integer winner = win();
+            String str = winner.toString();
+            Toast.makeText(MainActivity.this, str, Toast.LENGTH_SHORT).show();
+            if (winner != 0){
+                activePlayerRef.setValue(0);
+                //trigger fin de partie
+                if (winner == 1) {
+                    Toast.makeText(MainActivity.this, "PLAYER 1 WIN", Toast.LENGTH_SHORT).show();
+                }
+                if (winner == 2) {
+                    Toast.makeText(MainActivity.this, "PLAYER 2 WIN", Toast.LENGTH_SHORT).show();
+                }
+                //endGame();
             }
         }
         @Override
@@ -60,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             activePlayer = dataSnapshot.getValue().toString();
-            txtActive.setText("active player : "+activePlayer+" | playerNumber " +playerNumber+" | ready: 1 "+readyPlayer1+" - 2 "+readyPlayer2);
+            txtActive.setText("Active player : "+activePlayer+" | playerNumber " +playerNumber+" | ready: 1 "+readyPlayer1+" - 2 "+readyPlayer2);
         }
 
         @Override
@@ -88,10 +104,10 @@ public class MainActivity extends AppCompatActivity {
             txtP1.setText("Player 1 : " + player1name);
             player2name = dataSnapshot.child("player2").child("name").getValue().toString();
             txtP2.setText("Player 2 : " + player2name);
-            if (dataSnapshot.child("player1").child("ready").getValue().toString() == "1") {
+            if (dataSnapshot.child("player1").child("ready").getValue().toString().equals("1")) {
                 readyPlayer1 = true;
             }
-            if (dataSnapshot.child("player2").child("ready").getValue().toString() == "1") {
+            if (dataSnapshot.child("player2").child("ready").getValue().toString().equals("1")) {
                 readyPlayer2 = true;
             }
         }
@@ -119,16 +135,16 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         playerNumber = extras.getString("playerNumber");
-        if (playerNumber == "1") {
-            playersRef.child("player1").child("name").setValue(extras.getString("name"));
-            playersRef.child("player1").child("ready").setValue("1");
+        if (playerNumber.equals("1")) {
+            //playersRef.child("player1").child("name").setValue(extras.getString("name"));
+            playersRef.child("player1").child("ready").setValue(1);
             if (readyPlayer1 && readyPlayer2) {
                 activePlayerRef.setValue(1);
             }
         }
-        if (playerNumber == "2") {
-            playersRef.child("player2").child("name").setValue(extras.getString("name"));
-            playersRef.child("player2").child("ready").setValue("1");
+        if (playerNumber.equals("2")) {
+            //playersRef.child("player2").child("name").setValue(extras.getString("name"));
+            playersRef.child("player2").child("ready").setValue(1);
             if (readyPlayer1 && readyPlayer2) {
                 activePlayerRef.setValue(1);
             }
@@ -140,67 +156,67 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OnClickButtonListener(Bundle savedInstanceState) {
-        IB1 = (ImageButton) findViewById(R.id.IB1);
-        IB2 = (ImageButton) findViewById(R.id.IB2);
-        IB3 = (ImageButton) findViewById(R.id.IB3);
-        IB4 = (ImageButton) findViewById(R.id.IB4);
-        IB5 = (ImageButton) findViewById(R.id.IB5);
-        IB6 = (ImageButton) findViewById(R.id.IB6);
-        IB7 = (ImageButton) findViewById(R.id.IB7);
-        IB8 = (ImageButton) findViewById(R.id.IB8);
-        IB9 = (ImageButton) findViewById(R.id.IB9);
-        IB1.setOnClickListener(new View.OnClickListener() {
+        ibGrid[0] = (ImageButton) findViewById(R.id.IB1);
+        ibGrid[1] = (ImageButton) findViewById(R.id.IB2);
+        ibGrid[2] = (ImageButton) findViewById(R.id.IB3);
+        ibGrid[3] = (ImageButton) findViewById(R.id.IB4);
+        ibGrid[4] = (ImageButton) findViewById(R.id.IB5);
+        ibGrid[5] = (ImageButton) findViewById(R.id.IB6);
+        ibGrid[6] = (ImageButton) findViewById(R.id.IB7);
+        ibGrid[7] = (ImageButton) findViewById(R.id.IB8);
+        ibGrid[8] = (ImageButton) findViewById(R.id.IB9);
+        ibGrid[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickCase(IB1, 0);
+                clickCase(ibGrid[0], 0);
             }
         });
-        IB2.setOnClickListener(new View.OnClickListener() {
+        ibGrid[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickCase(IB2, 1);
+                clickCase(ibGrid[1], 1);
             }
         });
-        IB3.setOnClickListener(new View.OnClickListener() {
+        ibGrid[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickCase(IB3, 2);
+                clickCase(ibGrid[2], 2);
             }
         });
-        IB4.setOnClickListener(new View.OnClickListener() {
+        ibGrid[3].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickCase(IB4, 3);
+                clickCase(ibGrid[3], 3);
             }
         });
-        IB5.setOnClickListener(new View.OnClickListener() {
+        ibGrid[4].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickCase(IB5, 4);
+                clickCase(ibGrid[4], 4);
             }
         });
-        IB6.setOnClickListener(new View.OnClickListener() {
+        ibGrid[5].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickCase(IB6, 5);
+                clickCase(ibGrid[5], 5);
             }
         });
-        IB7.setOnClickListener(new View.OnClickListener() {
+        ibGrid[6].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickCase(IB7, 6);
+                clickCase(ibGrid[6], 6);
             }
         });
-        IB8.setOnClickListener(new View.OnClickListener() {
+        ibGrid[7].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickCase(IB8, 7);
+                clickCase(ibGrid[7], 7);
             }
         });
-        IB9.setOnClickListener(new View.OnClickListener() {
+        ibGrid[8].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickCase(IB9, 8);
+                clickCase(ibGrid[8], 8);
             }
         });
     }
@@ -219,17 +235,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickCase(ImageButton ib, Integer caseNum){
-        if (activePlayer == "0" && readyPlayer1 && readyPlayer2){
+        /*if (activePlayer == "0" && readyPlayer1 && readyPlayer2){
             activePlayerRef.setValue(1);
-        }
-        if (activePlayer == playerNumber){
+        }*/
+        if (activePlayer.toString().equals(playerNumber.toString())){
             if (caseEmpty[caseNum]){
-                if (playerNumber == "1") {
+                if (playerNumber.equals("1")) {
                     Drawable img = resize(getDrawable(R.drawable.un2), 2);
                     ib.setImageDrawable(img);
                     boardRef.child("case"+caseNum.toString()).setValue(Integer.parseInt(activePlayer));
                     activePlayerRef.setValue(2);
-                } else if (playerNumber == "2") {
+                } else if (playerNumber.equals("2")) {
                     Drawable img = resize(getDrawable(R.drawable.deux),2);
                     ib.setImageDrawable(img);
                     boardRef.child("case"+caseNum.toString()).setValue(Integer.parseInt(activePlayer));
@@ -237,14 +253,20 @@ public class MainActivity extends AppCompatActivity {
                 }
                 caseEmpty[caseNum] = false;
                 ib.setClickable(false);
-
-                if (win()!= 0){
-                    //trigger fin de partie
-                }
             }
         } else {
             //toast not your turn
             Toast.makeText(MainActivity.this, "Not your turn !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void setImg(ImageButton ib, int caseNum, int player) {
+        if (player == 1) {
+            Drawable img = resize(getDrawable(R.drawable.un2), 2);
+            ib.setImageDrawable(img);
+        } else if (player == 2) {
+            Drawable img = resize(getDrawable(R.drawable.deux),2);
+            ib.setImageDrawable(img);
         }
     }
 
@@ -266,35 +288,35 @@ public class MainActivity extends AppCompatActivity {
         playersRef.child("player1").child("name").setValue("Player1");
         playersRef.child("player1").child("ready").setValue(0);
         playersRef.child("player1").child("name").setValue("Player2");
-
+        activePlayerRef.setValue(1);
     }
 
     private Integer win(){
 
         Integer winP = 0;
 
-        if (grid[0] == grid[1] && grid[0] == grid[2] && grid[0] != 0) {
+        if (grid[0].equals(grid[1]) && grid[0].equals(grid[2]) && grid[0] != 0) {
             winP = grid[0];
         }
-        if (grid[3] == grid[4] && grid[3] == grid[5] && grid[3] != 0) {
+        if (grid[3].equals(grid[4]) && grid[3].equals(grid[5]) && grid[3] != 0) {
             winP = grid[3];
         }
-        if (grid[6] == grid[7] && grid[6] == grid[8] && grid[6] != 0) {
+        if (grid[6].equals(grid[7]) && grid[6].equals(grid[8]) && grid[6] != 0) {
             winP = grid[6];
         }
-        if (grid[0] == grid[3] && grid[0] == grid[6] && grid[0] != 0) {
+        if (grid[0].equals(grid[3]) && grid[0].equals(grid[6]) && grid[0] != 0) {
             winP = grid[0];
         }
-        if (grid[1] == grid[4] && grid[1] == grid[7] && grid[1] != 0) {
+        if (grid[1].equals(grid[4]) && grid[1].equals(grid[7]) && grid[1] != 0) {
             winP = grid[1];
         }
-        if (grid[2] == grid[5] && grid[2] == grid[8] && grid[2] != 0) {
+        if (grid[2].equals(grid[5]) && grid[2].equals(grid[8]) && grid[2] != 0) {
             winP = grid[2];
         }
-        if (grid[0] == grid[4] && grid[0] == grid[8] && grid[0] != 0) {
+        if (grid[0].equals(grid[4]) && grid[0].equals(grid[8]) && grid[0] != 0) {
             winP = grid[0];
         }
-        if (grid[2] == grid[4] && grid[2] == grid[6] && grid[2] != 0) {
+        if (grid[2].equals(grid[4]) && grid[2].equals(grid[6]) && grid[2] != 0) {
             winP = grid[2];
         }
         return winP;
@@ -309,19 +331,12 @@ public class MainActivity extends AppCompatActivity {
 
 startGame();
 
-changement activity
-Activity "accueil" avec un bouton join party + textfield pseudo (on gérera les pseudo plus tard);
-
 activePlayer a 0 par defaut.
 startGame() {
 reset grid
 set active player to 1.
 }
 
-txtfields "online" pour chaque joueur + active player
-
-
-if p1 + p2 offline kick vers accueil
 
 if winner
 endGame() {

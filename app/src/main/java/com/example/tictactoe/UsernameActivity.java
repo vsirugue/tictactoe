@@ -32,24 +32,14 @@ public class UsernameActivity extends AppCompatActivity {
     private ValueEventListener playersListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            player1name = dataSnapshot.child("player1").child("name").getValue().toString();
-            player2name = dataSnapshot.child("player2").child("name").getValue().toString();
-            if (dataSnapshot.child("player1").child("ready").getValue().toString() == "1") {
-                readyPlayer1 = true;
-            } else {
-                readyPlayer1 = false;
-            }
-            if (dataSnapshot.child("player2").child("ready").getValue().toString() == "1") {
-                readyPlayer2 = true;
-            } else {
-                readyPlayer2 = false;
-            }
+            readyPlayer1 = dataSnapshot.child("player1").child("ready").getValue().toString().equals("1");
+            readyPlayer2 = dataSnapshot.child("player2").child("ready").getValue().toString().equals("1");
         }
 
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
             //toast error
-            Toast.makeText(getApplicationContext(),"Couldn't get winner state", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Couldn't get state", Toast.LENGTH_LONG).show();
         }
     };
 
@@ -59,7 +49,7 @@ public class UsernameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_username);
 
         SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
-        String username = prefs.getString("text", null);
+        String username = prefs.getString("username", null);
 
         playersRef.addValueEventListener(playersListener);
 
@@ -70,7 +60,6 @@ public class UsernameActivity extends AppCompatActivity {
         usrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(UsernameActivity.this, "Username : "+ usrEdit.getText(), Toast.LENGTH_SHORT).show();
                 SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("username", usrEdit.getText().toString());
@@ -78,15 +67,19 @@ public class UsernameActivity extends AppCompatActivity {
 
                 if (!readyPlayer1) {
                     playersRef.child("player1").child("ready").setValue(1);
+                    playersRef.child("player1").child("name").setValue(usrEdit.getText().toString());
                     callActivity.putExtra("name", usrEdit.getText());
                     callActivity.putExtra("playerNumber", "1");
+                    Toast.makeText(UsernameActivity.this, "Username : "+ usrEdit.getText(), Toast.LENGTH_SHORT).show();
                     startActivity(callActivity);
                 }
                 else {
                     if (!readyPlayer2) {
                         playersRef.child("player2").child("ready").setValue(1);
+                        playersRef.child("player2").child("name").setValue(usrEdit.getText().toString());
                         callActivity.putExtra("name", usrEdit.getText());
                         callActivity.putExtra("playerNumber", "2");
+                        Toast.makeText(UsernameActivity.this, "Username : "+ usrEdit.getText(), Toast.LENGTH_SHORT).show();
                         startActivity(callActivity);
                     }
                     else {
