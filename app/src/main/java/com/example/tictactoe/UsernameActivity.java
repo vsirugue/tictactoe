@@ -65,11 +65,11 @@ public class UsernameActivity extends AppCompatActivity {
         usrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (usrEdit.getText().equals("reset-firebase")){
+                if (usrEdit.getText().toString().equals("reset-firebase")){
                     resetFB();
                     Toast.makeText(UsernameActivity.this, "Firebase reset", Toast.LENGTH_LONG).show();
                 }
-                else {
+                else if (!usrEdit.getText().toString().equals("")) {
                     SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("username", usrEdit.getText().toString());
@@ -115,8 +115,8 @@ public class UsernameActivity extends AppCompatActivity {
 
         playersRef.child("player1").child("ready").setValue(0);
         playersRef.child("player1").child("name").setValue("Player1");
-        playersRef.child("player1").child("ready").setValue(0);
-        playersRef.child("player1").child("name").setValue("Player2");
+        playersRef.child("player2").child("ready").setValue(0);
+        playersRef.child("player2").child("name").setValue("Player2");
         activePlayerRef.setValue(1);
     }
 

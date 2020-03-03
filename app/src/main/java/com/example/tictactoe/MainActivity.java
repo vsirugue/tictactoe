@@ -291,8 +291,8 @@ public class MainActivity extends AppCompatActivity {
         resetBoard();
         playersRef.child("player1").child("ready").setValue(0);
         playersRef.child("player1").child("name").setValue("Player1");
-        playersRef.child("player1").child("ready").setValue(0);
-        playersRef.child("player1").child("name").setValue("Player2");
+        playersRef.child("player2").child("ready").setValue(0);
+        playersRef.child("player2").child("name").setValue("Player2");
         activePlayerRef.setValue(1);
     }
 
@@ -341,7 +341,7 @@ public class MainActivity extends AppCompatActivity {
         // Set other dialog properties
         // Create the AlertDialog
         AlertDialog dialog = builder.create();
-
+        dialog.show();
     }
 
     @Override
