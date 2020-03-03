@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">TicTacToe</string>
     <string name="ok">OK</string>
-    <string name="reset">If you get an error, enter "reset-firebase" to reset firebase</string>
+    <string name="reset">If you get an error, please read the note on Moodle or Github</string>
 </resources>

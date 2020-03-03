@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             activePlayer = dataSnapshot.getValue().toString();
-            txtActive.setText("Active player : "+activePlayer+" | playerNumber " +playerNumber+" | ready: 1 "+readyPlayer1+" - 2 "+readyPlayer2);
+            txtActive.setText("Active player : "+activePlayer);
         }
 
         @Override
